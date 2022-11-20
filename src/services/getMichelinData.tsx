@@ -15,6 +15,9 @@ interface Coordinates {
   lng: number;
 }
 
+export type MichelinStars = "THREE_STARS" | "TWO_STARS" | "ONE_STAR";
+export type MichelinAward = MichelinStars | "BIB_GOURMAND" | null;
+
 export interface MichelinDataResponse {
   coordinates: Coordinates;
   area_name: string;
@@ -25,7 +28,7 @@ export interface MichelinDataResponse {
   currency_symbol: string;
   identifier: string;
   main_image: string;
-  michelin_award: string;
+  michelin_award: MichelinAward;
   michelin_award_sort: number;
   name: string;
   price_category: number;
