@@ -37,13 +37,13 @@ export const MichelinCard = (props) => {
   const data = props.data as MichelinDataResponse;
   return (
     <Card>
-      <div className="michelin-card grid grid-cols-6 bg-blue-100 justify-around">
-        <div className="flex bg-orange-300 flex-col justify-center col-span-1">
+      <div className="michelin-card grid grid-cols-6 justify-around">
+        <div className="flex flex-col justify-center col-span-1">
           <div className="michelin-card__picture m-4">
             <img src={data.image} alt="" />
           </div>
         </div>
-        <div className="michelin-card__detail flex flex-col bg-pink-200 col-span-5 m-4 justify-evenly">
+        <div className="michelin-card__detail flex flex-col col-span-5 m-4 justify-evenly">
           <div className="michelin-card__detail__non-cuisine-group">
             <div className="michelin-card__detail--stars">
               {getMichelinRatingDisplay(data.michelin_award)}
@@ -51,7 +51,7 @@ export const MichelinCard = (props) => {
             <div>
               <Link
                 underline="none"
-                className="michelin-card__detail--name text-lg bg-red-400"
+                className="michelin-card__detail--name text-lg "
                 href={`https://www.google.com/maps?q=${data.name.replace(
                   " ",
                   "+"
