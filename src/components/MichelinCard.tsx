@@ -7,7 +7,8 @@ import {
   MichelinAward,
   MichelinDataResponse,
 } from "@/services/getMichelinData";
-import { Card, Link } from "@mui/material";
+import Badge from "@mui/joy/Badge";
+import { Card, Chip, Link } from "@mui/material";
 
 function getMichelinRatingDisplay(michelinAward: MichelinAward) {
   switch (michelinAward) {
@@ -43,7 +44,7 @@ export const MichelinCard = (props) => {
             <img src={data.image} alt="" />
           </div>
         </div>
-        <div className="michelin-card__detail flex flex-col col-span-5 m-4 justify-evenly">
+        <div className="michelin-card__detail flex flex-col col-span-5 m-4 justify-between">
           <div className="michelin-card__detail__non-cuisine-group">
             <div className="michelin-card__detail--stars">
               {getMichelinRatingDisplay(data.michelin_award)}
@@ -65,8 +66,21 @@ export const MichelinCard = (props) => {
               Price: {"$".repeat(data.price_category)}
             </p>
           </div>
+          <Badge color="primary" variant="soft" />
           {data.cuisines.map((cuisine) => {
-            return <p className="michelin-card__detail--cuisine">{cuisine}</p>;
+            return (
+              <div>
+                <Chip
+                  className="michelin-card__detail--cuisine mt-2"
+                  size="small"
+                  color="success"
+                  variant="outlined"
+                  label={cuisine}
+                >
+                  {/* {cuisine} */}
+                </Chip>
+              </div>
+            );
           })}
         </div>
       </div>

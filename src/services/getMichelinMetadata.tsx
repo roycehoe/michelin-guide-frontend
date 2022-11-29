@@ -1,6 +1,12 @@
 import axios from "../axios";
 
-type MetadataName =
+const DEFAULT_MICHELIN_FILTERS: MetadataName[] = [
+  "price_category",
+  "michelin_award",
+  "cuisines",
+];
+
+export type MetadataName =
   | "coordinates"
   | "area_name"
   | "image"
@@ -22,11 +28,14 @@ type MetadataName =
   | "address"
   | "id";
 
-type MichelinMetadataResponse = [string | null] | [number | null] | [null];
+export type MichelinMetadataResponse =
+  | [string | null]
+  | [number | null]
+  | [null];
 
 export async function getMichelinMetadataResponse(
   metadataName: MetadataName
-): Promise<[MichelinMetadataResponse] | Error> {
+): Promise<MichelinMetadataResponse | Error> {
   try {
     const response = await axios.get(metadataName);
     return response.data;

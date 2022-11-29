@@ -8,7 +8,6 @@ const Activated = (props) => {
 };
 
 export const MichelinHeader = () => {
-  // To implement: Michelin Sort and Michelin Filter within this component
   const [isMenuOpened, setIsMenuOpened] = React.useState(false);
 
   return (
