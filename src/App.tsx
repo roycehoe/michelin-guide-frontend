@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { MichelinPage } from "./pages/MichelinPage";
-import { MichelinHeader } from "./pages/MichelinSort";
+import { MichelinSort } from "./pages/MichelinSort";
 import {
   DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
   getMichelinDataResponse,
@@ -38,14 +38,9 @@ function App() {
     michelinMetadataResponse().catch((error) => console.log(error));
   }, []);
 
-  // console.log(michelinPageData);
-  // console.log(michelinFilterData);
-
-  // console.log(michelinPageData);
-
   return (
     <div className="App">
-      <MichelinHeader></MichelinHeader>
+      <MichelinSort data={michelinFilterData}></MichelinSort>
       <MichelinPage data={michelinPageData}></MichelinPage>
     </div>
   );
