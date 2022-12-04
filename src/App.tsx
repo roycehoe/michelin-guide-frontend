@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { MichelinPage } from "./pages/MichelinPage";
-import { MichelinSort } from "./pages/MichelinSort";
+import { MenuBar } from "./pages/MenuBar";
+import { MichelinPage as RestaurantList } from "./pages/RestaurantList";
 import {
   DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
   getMichelinDataResponse,
@@ -13,26 +13,24 @@ import {
 } from "./services/getMichelinMetadata";
 
 function App() {
-  const [michelinPageData, setMichelinPageData] = useState(
+  const [restaurantList, setRestaurantList] = useState(
     [] as MichelinDataResponse[]
   );
-  const [michelinFilterData, setMichelinFilterData] = useState([
-    null,
-  ] as MichelinMetadataResponse);
+  const [menuBar, setMenuBar] = useState([null] as MichelinMetadataResponse);
 
   useEffect(() => {
     const michelinDataResponse = async () => {
       const response = await getMichelinDataResponse(
         DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST
       );
-      setMichelinPageData(response as MichelinDataResponse[]);
+      setRestaurantList(response as MichelinDataResponse[]);
     };
 
     michelinDataResponse().catch((error) => console.log(error));
 
     const michelinMetadataResponse = async () => {
       const response = await getMichelinMetadataResponse("michelin_award");
-      setMichelinFilterData(response as MichelinMetadataResponse);
+      setMenuBar(response as MichelinMetadataResponse);
     };
 
     michelinMetadataResponse().catch((error) => console.log(error));
@@ -40,8 +38,8 @@ function App() {
 
   return (
     <div className="App">
-      <MichelinSort data={michelinFilterData}></MichelinSort>
-      <MichelinPage data={michelinPageData}></MichelinPage>
+      <MenuBar data={menuBar}></MenuBar>
+      <RestaurantList data={restaurantList}></RestaurantList>
     </div>
   );
 }
