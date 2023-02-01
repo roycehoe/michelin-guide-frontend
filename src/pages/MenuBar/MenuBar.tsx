@@ -1,27 +1,18 @@
 import { MichelinMetadataResponse } from "@/services/getMichelinMetadata";
 import { FilterAlt } from "@mui/icons-material";
 import Sort from "@mui/icons-material/Sort";
-import { Button, Menu, MenuItem } from "@mui/material";
+import {
+  Button,
+  Collapse,
+  List,
+  ListItemButton,
+  ListItemText,
+  Menu,
+} from "@mui/material";
 
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import React, { useEffect, useState } from "react";
 import { useMenuBar } from "./useMenuBar";
-
-const FILTER_OPTIONS = [
-  "Price", //currency_symbol
-  "Cuisine",
-  "Michelin award",
-];
-
-// const SOMETHING = [
-//   { Price: [1, 2, 3, 4, 5] },
-//   { Cuisine: ["wee"] },
-//   { "Michelin award": ["very good", "dogshit"] },
-// ];
-const SOMETHING = {
-  Price: [1, 2, 3, 4, 5],
-  Cuisine: ["wee"],
-  "Michelin award": ["very good", "dogshit"],
-};
 
 export const MenuBar: React.FC = () => {
   const [menuBar, setMenuBar] = useState<MichelinMetadataResponse>([
@@ -50,6 +41,7 @@ export const MenuBar: React.FC = () => {
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -57,6 +49,11 @@ export const MenuBar: React.FC = () => {
     setAnchorEl(null);
   };
 
+  const [openList, setOpenList] = React.useState(true);
+
+  const handleListClick = () => {
+    setOpenList(!openList);
+  };
   return (
     <div className="menu bg-gray-100 flex justify-end">
       <div className="menu__filter m-2">
@@ -79,9 +76,34 @@ export const MenuBar: React.FC = () => {
             "aria-labelledby": "basic-button",
           }}
         >
-          {Object.keys(SOMETHING).map((option) => (
-            <MenuItem>{option}</MenuItem>
-          ))}
+          <List component="nav" aria-labelledby="nested-list-subheader">
+            <ListItemButton onClick={handleListClick} dense={true}>
+              <ListItemText primary="One" />
+              <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
+            </ListItemButton>
+            <Collapse in={openList} timeout="auto" unmountOnExit>
+              <List component="div" dense={true} disablePadding={true}>
+                <ListItemText className="m-2 ml-8" primary="I am one" />
+                <ListItemText className="m-2 ml-8" primary="I am one" />
+                <ListItemText className="m-2 ml-8" primary="I am one" />
+                <ListItemText className="m-2 ml-8" primary="I am one" />
+                <ListItemText className="m-2 ml-8" primary="I am one" />
+              </List>
+            </Collapse>
+            <ListItemButton onClick={handleListClick} dense={true}>
+              <ListItemText primary="Three" />
+              <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
+            </ListItemButton>
+            <Collapse in={openList} timeout="auto" unmountOnExit>
+              <List component="div" dense={true} disablePadding={true}>
+                <ListItemText className="m-2 ml-8" primary="I am three" />
+                <ListItemText className="m-2 ml-8" primary="I am three" />
+                <ListItemText className="m-2 ml-8" primary="I am three" />
+                <ListItemText className="m-2 ml-8" primary="I am three" />
+                <ListItemText className="m-2 ml-8" primary="I am three" />
+              </List>
+            </Collapse>
+          </List>
         </Menu>
       </div>
       <div className="menu__sort m-2 ">
