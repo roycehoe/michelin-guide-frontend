@@ -1,12 +1,12 @@
+import { MenuBar } from "@/pages/MenuBar";
+import { MichelinPage as RestaurantList } from "@/pages/RestaurantList";
 import "./App.css";
-import { MenuBar } from "./pages/MenuBar";
-import { MichelinPage as RestaurantList } from "./pages/RestaurantList";
 
 function App() {
   return (
     <div className="App">
-      <MenuBar></MenuBar>
-      <RestaurantList></RestaurantList>
+      <MenuBar />
+      <RestaurantList />
     </div>
   );
 }

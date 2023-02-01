@@ -40,6 +40,6 @@ export async function getMichelinMetadataResponse(
     const response = await axios.get(metadataName);
     return response.data;
   } catch (error) {
-    return error as Error;
+    throw error;
   }
 }
