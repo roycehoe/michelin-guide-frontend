@@ -18,8 +18,8 @@ function getMichelinRatingDisplay(michelinAward: MichelinAward) {
       const arraySize = MICHELIN_AWARD_MAP[michelinAward];
       return (
         <div className="flex">
-          {[...new Array(arraySize)].map((key) => (
-            <img key={key} className="w-8" src={MICHELIN_STAR_IMAGE} alt="" />
+          {[...new Array(arraySize)].map((key, index) => (
+            <img key={index} className="w-8" src={MICHELIN_STAR_IMAGE} alt="" />
           ))}
         </div>
       );
