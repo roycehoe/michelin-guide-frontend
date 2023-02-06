@@ -1,4 +1,5 @@
 import BasicSelect from "@/components/DropdownSelection";
+import { FILTER_BY_MICHELIN_RATING_SELECTION } from "@/constants/forms";
 import { useFetch } from "@/hooks/use-fetch";
 import {
   ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
@@ -81,7 +82,10 @@ export const MenuBar: React.FC = (props: {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <BasicSelect setRestaurant={props.setRestaurants}></BasicSelect>
+        <BasicSelect
+          setRestaurant={props.setRestaurants}
+          data={FILTER_BY_MICHELIN_RATING_SELECTION}
+        ></BasicSelect>
       </TabPanel>
     </Box>
   );

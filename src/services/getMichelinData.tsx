@@ -20,6 +20,7 @@ enum SortOrder {
 export interface MichelinDataRequest {
   filter: any;
   sort: [string, SortOrder][];
+  limit: number;
 }
 
 interface Coordinates {

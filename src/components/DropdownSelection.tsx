@@ -1,7 +1,6 @@
+import { BasicSelectData } from "@/constants/forms";
 import {
-  ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
   getMichelinDataResponse,
-  MichelinAward,
   MichelinDataRequest,
   MichelinDataResponse,
 } from "@/services/getMichelinData";
@@ -12,44 +11,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import * as React from "react";
 
-interface MenuItem {
-  name: string;
-  value: MichelinAward;
-}
-
-export interface BasicSelectData {
-  inputLabel: string;
-  menuItem: MenuItem[];
-}
-
-const PLACEHOLDER_DATA: BasicSelectData = {
-  inputLabel: "Michelin Rating",
-  menuItem: [
-    {
-      name: "One star",
-      value: "ONE_STAR",
-    },
-    {
-      name: "Two stars",
-      value: "TWO_STARS",
-    },
-    {
-      name: "Three stars",
-      value: "THREE_STARS",
-    },
-    {
-      name: "Bib Gourmand",
-      value: "BIB_GOURMAND",
-    },
-    {
-      name: "No award",
-      value: null,
-    },
-  ],
-};
-
 export default function BasicSelect(props: {
   setRestaurant: CallableFunction;
+  data: BasicSelectData;
 }) {
   const [selection, setSelection] = React.useState("");
 
@@ -59,7 +23,6 @@ export default function BasicSelect(props: {
 
   async function SortMichelinPage(filterRequest: MichelinDataRequest) {
     const response = await getMichelinDataResponse(filterRequest);
-    console.log("I am clicked");
     props.setRestaurant(response as MichelinDataResponse[]);
   }
 
@@ -67,7 +30,7 @@ export default function BasicSelect(props: {
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
-          {PLACEHOLDER_DATA.inputLabel}
+          {props.data.inputLabel}
         </InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -76,7 +39,7 @@ export default function BasicSelect(props: {
           label="Age"
           onChange={handleChange}
         >
-          {PLACEHOLDER_DATA.menuItem.map((data, index) => {
+          {props.data.menuItem.map((data, index) => {
             return (
               <MenuItem
                 onClick={() =>

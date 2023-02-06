@@ -1,14 +1,17 @@
-import {
-  BIB_GOURMAND_IMAGE,
-  MICHELIN_AWARD_MAP,
-  MICHELIN_STAR_IMAGE,
-} from "@/constants";
+import { BIB_GOURMAND_IMAGE, MICHELIN_STAR_IMAGE } from "@/constants/images";
 import {
   MichelinAward,
   MichelinDataResponse,
+  MichelinStars,
 } from "@/services/getMichelinData";
 import Badge from "@mui/joy/Badge";
 import { Card, Chip, Link } from "@mui/material";
+
+export const MICHELIN_AWARD_MAP: Record<MichelinStars, number> = {
+  THREE_STARS: 3,
+  TWO_STARS: 2,
+  ONE_STAR: 1,
+};
 
 function getMichelinRatingDisplay(michelinAward: MichelinAward) {
   switch (michelinAward) {
