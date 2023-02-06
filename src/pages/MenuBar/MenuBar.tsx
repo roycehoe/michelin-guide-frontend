@@ -2,15 +2,9 @@ import BasicSelect from "@/components/DropdownSelection";
 import { useFetch } from "@/hooks/use-fetch";
 import { MichelinMetadataResponse } from "@/services/getMichelinMetadata";
 
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, LinearProgress, Tab, Tabs, Typography } from "@mui/material";
 
 import React, { useEffect, useState } from "react";
-
-const PLACEHOLDER_DATA: NestedMenuItem[] = [
-  { parent: "one", child: [1, 2, 3, 4, 5] },
-  { parent: "two", child: ["awesome", "dogshit"] },
-];
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -38,7 +32,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function a11yProps(index: number) {
+function getTabProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
@@ -69,7 +63,7 @@ export const MenuBar: React.FC = () => {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Filter" {...a11yProps(0)} />
+          <Tab label="Filter" {...getTabProps(0)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
