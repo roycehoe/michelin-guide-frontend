@@ -1,6 +1,9 @@
 import {
   ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
   getMichelinDataResponse,
+  MichelinAward,
+  MichelinDataRequest,
+  MichelinDataResponse,
 } from "@/services/getMichelinData";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
@@ -11,7 +14,7 @@ import * as React from "react";
 
 interface MenuItem {
   name: string;
-  value: string | number;
+  value: MichelinAward;
 }
 
 export interface BasicSelectData {
@@ -24,15 +27,23 @@ const PLACEHOLDER_DATA: BasicSelectData = {
   menuItem: [
     {
       name: "One star",
-      value: 10,
+      value: "ONE_STAR",
     },
     {
       name: "Two stars",
-      value: 20,
+      value: "TWO_STARS",
     },
     {
       name: "Three stars",
-      value: 30,
+      value: "THREE_STARS",
+    },
+    {
+      name: "Bib Gourmand",
+      value: "BIB_GOURMAND",
+    },
+    {
+      name: "No award",
+      value: null,
     },
   ],
 };
@@ -46,10 +57,8 @@ export default function BasicSelect(props: {
     setSelection(event.target.value as string);
   };
 
-  async function SortMichelinPage() {
-    const response = await getMichelinDataResponse(
-      ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST
-    );
+  async function SortMichelinPage(filterRequest: MichelinDataRequest) {
+    const response = await getMichelinDataResponse(filterRequest);
     console.log("I am clicked");
     props.setRestaurant(response as MichelinDataResponse[]);
   }
@@ -70,9 +79,15 @@ export default function BasicSelect(props: {
           {PLACEHOLDER_DATA.menuItem.map((data, index) => {
             return (
               <MenuItem
-                onClick={() => SortMichelinPage()}
+                onClick={() =>
+                  SortMichelinPage({
+                    filter: { michelin_award: data.value },
+                    sort: [["michelin_award_sort", -1]],
+                    limit: 0,
+                  })
+                }
                 key={index}
-                value={data.value}
+                value={data.value ? data.value : "No award"}
               >
                 {data.name}
               </MenuItem>

@@ -17,9 +17,9 @@ enum SortOrder {
   DESCENDING = -1,
 }
 
-interface MichelinDataRequest {
+export interface MichelinDataRequest {
   filter: any;
-  sort: [[string, SortOrder]];
+  sort: [string, SortOrder][];
 }
 
 interface Coordinates {
