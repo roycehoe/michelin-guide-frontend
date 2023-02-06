@@ -1,3 +1,4 @@
+import { useFetch } from "@/hooks/use-fetch";
 import {
   MetadataName,
   MichelinMetadataResponse,
@@ -6,9 +7,6 @@ import {
 export const useMenuBar = () => {
   async function getSortData(menuBarMenu: MetadataName) {
     const [loading, error, data] = useFetch(menuBarMenu, "GET");
-    console.log({ loading });
-    console.log({ error });
-    console.log({ data });
     return data as MichelinMetadataResponse;
   }
 

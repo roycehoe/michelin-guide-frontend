@@ -1,12 +1,10 @@
-import { MenuBar } from "@/pages/MenuBar";
-import { MichelinPage as RestaurantList } from "@/pages/RestaurantList";
 import "./App.css";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <MenuBar />
-      <RestaurantList />
+      <HomePage></HomePage>
     </div>
   );
 }
