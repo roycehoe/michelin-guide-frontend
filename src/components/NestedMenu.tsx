@@ -53,27 +53,16 @@ export const NestedMenu: React.FC<NestedMenuProps> = ({
         <List component="nav" aria-labelledby="nested-list-subheader">
           <ListItemButton onClick={handleListClick} dense={true}>
             <ListItemText primary="Price" />
-          </ListItemButton>
-          <Collapse in={openList} timeout="auto" unmountOnExit>
-            <List component="div" dense={true} disablePadding={true}>
-              <ListItemText className="m-2 ml-8" primary="I am one" />
-              <ListItemText className="m-2 ml-8" primary="I am one" />
-              <ListItemText className="m-2 ml-8" primary="I am one" />
-              <ListItemText className="m-2 ml-8" primary="I am one" />
-              <ListItemText className="m-2 ml-8" primary="I am one" />
-            </List>
-          </Collapse>
-          <ListItemButton onClick={handleListClick} dense={true}>
-            <ListItemText primary="Stars" />
             <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
           </ListItemButton>
           <Collapse in={openList} timeout="auto" unmountOnExit>
             <List component="div" dense={true} disablePadding={true}>
-              <ListItemText className="m-2 ml-8" primary="I am three" />
-              <ListItemText className="m-2 ml-8" primary="I am three" />
-              <ListItemText className="m-2 ml-8" primary="I am three" />
-              <ListItemText className="m-2 ml-8" primary="I am three" />
-              <ListItemText className="m-2 ml-8" primary="I am three" />
+              <Button>
+                <ListItemText className="m-2 ml-8" primary="$" />
+              </Button>
+              <ListItemText className="m-2 ml-8" primary="$$" />
+              <ListItemText className="m-2 ml-8" primary="$$$" />
+              <ListItemText className="m-2 ml-8" primary="$$$$$" />
             </List>
           </Collapse>
         </List>
