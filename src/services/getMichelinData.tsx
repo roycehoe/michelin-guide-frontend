@@ -6,6 +6,12 @@ export const DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST = {
   limit: 0,
 } as MichelinDataRequest;
 
+export const ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST = {
+  filter: {},
+  sort: [["michelin_award_sort", 1]],
+  limit: 0,
+} as MichelinDataRequest;
+
 enum SortOrder {
   ASCENDING = 1,
   DESCENDING = -1,
@@ -48,7 +54,7 @@ export interface MichelinDataResponse {
 }
 
 export async function getMichelinDataResponse(
-  request: MichelinDataRequest
+  request: MichelinDataRequest = DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST
 ): Promise<MichelinDataResponse[] | Error> {
   try {
     const response = await axios.post("", request);

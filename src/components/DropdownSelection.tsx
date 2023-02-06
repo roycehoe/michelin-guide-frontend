@@ -1,3 +1,7 @@
+import {
+  ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
+  getMichelinDataResponse,
+} from "@/services/getMichelinData";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -33,12 +37,22 @@ const PLACEHOLDER_DATA: BasicSelectData = {
   ],
 };
 
-export default function BasicSelect() {
+export default function BasicSelect(props: {
+  setRestaurant: CallableFunction;
+}) {
   const [selection, setSelection] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelection(event.target.value as string);
   };
+
+  async function SortMichelinPage() {
+    const response = await getMichelinDataResponse(
+      ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST
+    );
+    console.log("I am clicked");
+    props.setRestaurant(response as MichelinDataResponse[]);
+  }
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -55,7 +69,11 @@ export default function BasicSelect() {
         >
           {PLACEHOLDER_DATA.menuItem.map((data, index) => {
             return (
-              <MenuItem key={index} value={data.value}>
+              <MenuItem
+                onClick={() => SortMichelinPage()}
+                key={index}
+                value={data.value}
+              >
                 {data.name}
               </MenuItem>
             );

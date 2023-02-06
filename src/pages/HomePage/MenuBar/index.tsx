@@ -1,8 +1,20 @@
 import BasicSelect from "@/components/DropdownSelection";
 import { useFetch } from "@/hooks/use-fetch";
+import {
+  ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
+  getMichelinDataResponse,
+  MichelinDataResponse,
+} from "@/services/getMichelinData";
 import { MichelinMetadataResponse } from "@/services/getMichelinMetadata";
 
-import { Box, LinearProgress, Tab, Tabs, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  LinearProgress,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
 
 import React, { useEffect, useState } from "react";
 
@@ -39,7 +51,9 @@ function getTabProps(index: number) {
   };
 }
 
-export const MenuBar: React.FC = () => {
+export const MenuBar: React.FC = (props: {
+  setRestaurants: CallableFunction;
+}) => {
   const [menuBar, setMenuBar] = useState<MichelinMetadataResponse>([
     null,
   ] as MichelinMetadataResponse);
@@ -67,7 +81,7 @@ export const MenuBar: React.FC = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <BasicSelect></BasicSelect>
+        <BasicSelect setRestaurant={props.setRestaurants}></BasicSelect>
       </TabPanel>
     </Box>
   );
