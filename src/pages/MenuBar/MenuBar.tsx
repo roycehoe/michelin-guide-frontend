@@ -1,4 +1,4 @@
-import { NestedMenu, NestedMenuItem } from "@/components/NestedMenu";
+import BasicSelect from "@/components/DropdownSelection";
 import { useFetch } from "@/hooks/use-fetch";
 import { MichelinMetadataResponse } from "@/services/getMichelinMetadata";
 
@@ -70,14 +70,10 @@ export const MenuBar: React.FC = () => {
           aria-label="basic tabs example"
         >
           <Tab label="Filter" {...a11yProps(0)} />
-          <Tab label="Sort" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <div className="bg-black">Filter menu goes here</div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <div className="bg-black">Sort menu goes here</div>
+        <BasicSelect></BasicSelect>
       </TabPanel>
     </Box>
   );
