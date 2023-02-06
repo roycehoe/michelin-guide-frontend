@@ -22,9 +22,9 @@ export const MichelinPage = (prop) => {
 
   return (
     <div>
-      {restaurants.map((data) => {
+      {restaurants.map((data, index) => {
         return (
-          <div className="mt-4">
+          <div key={index} className="mt-4">
             <RestaurantCard data={data}></RestaurantCard>
           </div>
         );

@@ -1,4 +1,3 @@
-import { FilterAlt } from "@mui/icons-material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import {
   Button,
@@ -9,19 +8,24 @@ import {
   Menu,
 } from "@mui/material";
 
-import React from "react";
+import React, { ReactNode } from "react";
 
 export interface NestedMenuItem {
   parent: string;
   child: Array<string | number>;
 }
 
-export const NestedMenu: React.FC = (props) => {
-  const menuItems = props.data as NestedMenuItem[];
-  const icon = props.icon;
-  console.log(menuItems);
+interface NestedMenuProps {
+  data: NestedMenuItem[];
+  icon: ReactNode;
+}
+
+export const NestedMenu: React.FC<NestedMenuProps> = ({
+  data: menuItems,
+  icon,
+}: NestedMenuProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const isOpened = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -37,12 +41,13 @@ export const NestedMenu: React.FC = (props) => {
   return (
     <div className="menu__filter m-2">
       <Button variant="outlined" onClick={handleClick}>
-        <FilterAlt></FilterAlt>
+        {/* <FilterAlt></FilterAlt> */}
+        {icon}
       </Button>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
-        open={open}
+        open={isOpened}
         onClose={handleClose}
       >
         <List component="nav" aria-labelledby="nested-list-subheader">

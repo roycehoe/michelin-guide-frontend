@@ -67,9 +67,9 @@ export const RestaurantCard = (props) => {
             </p>
           </div>
           <Badge color="primary" variant="soft" />
-          {data.cuisines.map((cuisine) => {
+          {data.cuisines.map((cuisine, index) => {
             return (
-              <div>
+              <div key={index}>
                 <Chip
                   className="michelin-card__detail--cuisine mt-2"
                   size="small"
