@@ -1,17 +1,24 @@
 import { MichelinAward } from "@/services/getMichelinData";
 
-interface MenuItem {
+interface MichelinAwardMenuItem {
   name: string;
   value: MichelinAward;
 }
 
+interface PriceMenuItem {
+  name: string;
+  value: number;
+}
+
 export interface BasicSelectData {
+  param: string;
   inputLabel: string;
-  menuItem: MenuItem[];
+  menuItem: MichelinAwardMenuItem[] | PriceMenuItem[];
 }
 
 export const FILTER_BY_MICHELIN_RATING_SELECTION: BasicSelectData = {
-  inputLabel: "Michelin Rating",
+  param: "michelin_award",
+  inputLabel: "Rating",
   menuItem: [
     {
       name: "One star",
@@ -32,6 +39,52 @@ export const FILTER_BY_MICHELIN_RATING_SELECTION: BasicSelectData = {
     {
       name: "No award",
       value: null,
+    },
+  ],
+};
+
+export const FILTER_BY_PRICE_SELECTION: BasicSelectData = {
+  param: "price_category",
+  inputLabel: "Price",
+  menuItem: [
+    {
+      name: "$",
+      value: 1,
+    },
+    {
+      name: "$$",
+      value: 2,
+    },
+    {
+      name: "$$$",
+      value: 3,
+    },
+    {
+      name: "$$$$",
+      value: 4,
+    },
+  ],
+};
+
+export const SORT_BY_PRICE_SELECTION: BasicSelectData = {
+  param: "price_category",
+  inputLabel: "Price",
+  menuItem: [
+    {
+      name: "$",
+      value: 1,
+    },
+    {
+      name: "$$",
+      value: 2,
+    },
+    {
+      name: "$$$",
+      value: 3,
+    },
+    {
+      name: "$$$$",
+      value: 4,
     },
   ],
 };

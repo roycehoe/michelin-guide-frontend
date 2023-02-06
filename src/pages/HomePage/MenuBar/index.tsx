@@ -1,9 +1,13 @@
 import BasicSelect from "@/components/DropdownSelection";
-import { FILTER_BY_MICHELIN_RATING_SELECTION } from "@/constants/forms";
+import {
+  FILTER_BY_MICHELIN_RATING_SELECTION,
+  FILTER_BY_PRICE_SELECTION,
+} from "@/constants/forms";
 import { useFetch } from "@/hooks/use-fetch";
 import {
   ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST,
   getMichelinDataResponse,
+  MichelinDataRequest,
   MichelinDataResponse,
 } from "@/services/getMichelinData";
 import { MichelinMetadataResponse } from "@/services/getMichelinMetadata";
@@ -30,6 +34,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
+      className="my-4"
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -37,7 +42,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -70,8 +75,13 @@ export const MenuBar: React.FC = (props: {
     setValue(newValue);
   };
 
+  async function SortMichelinPage(filterRequest: MichelinDataRequest) {
+    const response = await getMichelinDataResponse(filterRequest);
+    props.setRestaurants(response as MichelinDataResponse[]);
+  }
+
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -79,12 +89,19 @@ export const MenuBar: React.FC = (props: {
           aria-label="basic tabs example"
         >
           <Tab label="Filter" {...getTabProps(0)} />
+          <Tab label="Sort" {...getTabProps(1)} />
         </Tabs>
       </Box>
+
       <TabPanel value={value} index={0}>
         <BasicSelect
-          setRestaurant={props.setRestaurants}
+          sortMichelinPage={SortMichelinPage}
           data={FILTER_BY_MICHELIN_RATING_SELECTION}
+          className="bg-red-100"
+        ></BasicSelect>
+        <BasicSelect
+          sortMichelinPage={SortMichelinPage}
+          data={FILTER_BY_PRICE_SELECTION}
         ></BasicSelect>
       </TabPanel>
     </Box>
