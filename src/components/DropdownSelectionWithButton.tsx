@@ -18,7 +18,9 @@ export default function DropdownSelectionWithButton(props: {
   sortMichelinPage: CallableFunction;
   data: BasicSelectData;
 }) {
-  const [dropdownSelection, setDropdownSelection] = React.useState("");
+  const [dropdownSelection, setDropdownSelection] = React.useState(
+    "michelin_award_sort"
+  );
   const handleDropdownChange = (event: SelectChangeEvent) => {
     setDropdownSelection(event.target.value as string);
   };
@@ -26,12 +28,26 @@ export default function DropdownSelectionWithButton(props: {
   const [buttonSelection, setButtonSelection] = React.useState(
     SortOrder.DESCENDING
   );
+
+  const sortMichelinPage = (
+    sortValue: string | number | null,
+    sortOrder: SortOrder
+  ) => {
+    props.sortMichelinPage({
+      filter: {},
+      sort: [
+        [sortValue, sortOrder],
+        ["michelin_award_sort", -1],
+      ],
+      limit: 0,
+    });
+  };
+
   const handleButtonChange = (event: React.MouseEvent) => {
-    if (buttonSelection === SortOrder.ASCENDING) {
-      setButtonSelection(SortOrder.DESCENDING);
-      return;
-    }
-    setButtonSelection(SortOrder.ASCENDING);
+    buttonSelection === SortOrder.DESCENDING
+      ? setButtonSelection(SortOrder.ASCENDING)
+      : setButtonSelection(SortOrder.DESCENDING);
+    sortMichelinPage(dropdownSelection, buttonSelection);
   };
 
   return (
@@ -50,13 +66,7 @@ export default function DropdownSelectionWithButton(props: {
           {props.data.menuItem.map((data, index) => {
             return (
               <MenuItem
-                onClick={() =>
-                  props.sortMichelinPage({
-                    filter: { [props.data.param]: data.value },
-                    sort: [["michelin_award_sort", -1]],
-                    limit: 0,
-                  })
-                }
+                onClick={() => sortMichelinPage(data.value, buttonSelection)}
                 key={index}
                 value={data.value ? data.value : "No award"}
               >

@@ -1,22 +1,18 @@
-import { MichelinAward } from "@/services/getMichelinData";
-
-interface MichelinAwardMenuItem {
+interface BasicMenuItem {
   name: string;
-  value: MichelinAward;
-}
-
-interface PriceMenuItem {
-  name: string;
-  value: number;
+  value: number | string | null;
 }
 
 export interface BasicSelectData {
-  param: string;
   inputLabel: string;
-  menuItem: MichelinAwardMenuItem[] | PriceMenuItem[];
+  menuItem: BasicMenuItem[];
 }
 
-export const FILTER_BY_MICHELIN_RATING_SELECTION: BasicSelectData = {
+interface FilterSelection extends BasicSelectData {
+  param: string;
+}
+
+export const FILTER_BY_MICHELIN_RATING_SELECTION: FilterSelection = {
   param: "michelin_award",
   inputLabel: "Rating",
   menuItem: [
@@ -43,7 +39,7 @@ export const FILTER_BY_MICHELIN_RATING_SELECTION: BasicSelectData = {
   ],
 };
 
-export const FILTER_BY_PRICE_SELECTION: BasicSelectData = {
+export const FILTER_BY_PRICE_SELECTION: FilterSelection = {
   param: "price_category",
   inputLabel: "Price",
   menuItem: [
@@ -67,7 +63,6 @@ export const FILTER_BY_PRICE_SELECTION: BasicSelectData = {
 };
 
 export const SORT_BY_PRICE_SELECTION: BasicSelectData = {
-  param: "price_category",
   inputLabel: "Sort",
   menuItem: [
     {

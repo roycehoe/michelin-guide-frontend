@@ -3,6 +3,7 @@ import DropdownSelectionWithButton from "@/components/DropdownSelectionWithButto
 import {
   FILTER_BY_MICHELIN_RATING_SELECTION,
   FILTER_BY_PRICE_SELECTION,
+  SORT_BY_PRICE_SELECTION,
 } from "@/constants/forms";
 import { useFetch } from "@/hooks/use-fetch";
 import {
@@ -96,18 +97,18 @@ export const MenuBar: React.FC = (props: {
 
       <TabPanel value={value} index={0}>
         <DropdownSelection
-          sortMichelinPage={updateMichelinPage}
+          filterMichelinPage={updateMichelinPage}
           data={FILTER_BY_MICHELIN_RATING_SELECTION}
         ></DropdownSelection>
         <DropdownSelection
-          sortMichelinPage={updateMichelinPage}
+          filterMichelinPage={updateMichelinPage}
           data={FILTER_BY_PRICE_SELECTION}
         ></DropdownSelection>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <DropdownSelectionWithButton
-          filterMichelinPage={updateMichelinPage}
-          data={FILTER_BY_MICHELIN_RATING_SELECTION}
+          sortMichelinPage={updateMichelinPage}
+          data={SORT_BY_PRICE_SELECTION}
         ></DropdownSelectionWithButton>
       </TabPanel>
     </Box>

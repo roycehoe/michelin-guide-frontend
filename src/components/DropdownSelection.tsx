@@ -1,4 +1,4 @@
-import { BasicSelectData } from "@/constants/forms";
+import { FilterSelection } from "@/constants/forms";
 import {
   getMichelinDataResponse,
   MichelinDataRequest,
@@ -12,8 +12,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import * as React from "react";
 
 export default function DropdownSelection(props: {
-  sortMichelinPage: CallableFunction;
-  data: BasicSelectData;
+  filterMichelinPage: CallableFunction;
+  data: FilterSelection;
 }) {
   const [selection, setSelection] = React.useState("");
 
@@ -37,7 +37,7 @@ export default function DropdownSelection(props: {
           return (
             <MenuItem
               onClick={() =>
-                props.sortMichelinPage({
+                props.filterMichelinPage({
                   filter: { [props.data.param]: data.value },
                   sort: [["michelin_award_sort", -1]],
                   limit: 0,
