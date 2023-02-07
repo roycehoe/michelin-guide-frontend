@@ -79,13 +79,12 @@ export const RestaurantCard = (props) => {
                   color="success"
                   variant="outlined"
                   label={cuisine}
-                >
-                  {/* {cuisine} */}
-                </Chip>
+                ></Chip>
               </div>
             );
           })}
         </div>
+        <p>HELLO WORLDD</p>
       </div>
     </Card>
   );
