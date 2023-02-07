@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import * as React from "react";
 
-export default function BasicSelect(props: {
+export default function DropdownSelection(props: {
   sortMichelinPage: CallableFunction;
   data: BasicSelectData;
 }) {

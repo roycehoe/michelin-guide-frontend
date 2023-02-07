@@ -12,7 +12,7 @@ export const ANOTHER_DEFAULT_GET_ALL_MICHELIN_DATA_REQUEST = {
   limit: 0,
 } as MichelinDataRequest;
 
-enum SortOrder {
+export enum SortOrder {
   ASCENDING = 1,
   DESCENDING = -1,
 }

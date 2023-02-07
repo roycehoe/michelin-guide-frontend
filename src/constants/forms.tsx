@@ -68,23 +68,15 @@ export const FILTER_BY_PRICE_SELECTION: BasicSelectData = {
 
 export const SORT_BY_PRICE_SELECTION: BasicSelectData = {
   param: "price_category",
-  inputLabel: "Price",
+  inputLabel: "Sort",
   menuItem: [
     {
-      name: "$",
-      value: 1,
+      name: "Michelin Award",
+      value: "michelin_award_sort",
     },
     {
-      name: "$$",
-      value: 2,
-    },
-    {
-      name: "$$$",
-      value: 3,
-    },
-    {
-      name: "$$$$",
-      value: 4,
+      name: "Price",
+      value: "price_category",
     },
   ],
 };

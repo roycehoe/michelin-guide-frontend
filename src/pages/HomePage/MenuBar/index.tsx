@@ -1,4 +1,5 @@
-import BasicSelect from "@/components/DropdownSelection";
+import DropdownSelection from "@/components/DropdownSelection";
+import DropdownSelectionWithButton from "@/components/DropdownSelectionWithButton";
 import {
   FILTER_BY_MICHELIN_RATING_SELECTION,
   FILTER_BY_PRICE_SELECTION,
@@ -75,7 +76,7 @@ export const MenuBar: React.FC = (props: {
     setValue(newValue);
   };
 
-  async function SortMichelinPage(filterRequest: MichelinDataRequest) {
+  async function updateMichelinPage(filterRequest: MichelinDataRequest) {
     const response = await getMichelinDataResponse(filterRequest);
     props.setRestaurants(response as MichelinDataResponse[]);
   }
@@ -94,15 +95,20 @@ export const MenuBar: React.FC = (props: {
       </Box>
 
       <TabPanel value={value} index={0}>
-        <BasicSelect
-          sortMichelinPage={SortMichelinPage}
+        <DropdownSelection
+          sortMichelinPage={updateMichelinPage}
           data={FILTER_BY_MICHELIN_RATING_SELECTION}
-          className="bg-red-100"
-        ></BasicSelect>
-        <BasicSelect
-          sortMichelinPage={SortMichelinPage}
+        ></DropdownSelection>
+        <DropdownSelection
+          sortMichelinPage={updateMichelinPage}
           data={FILTER_BY_PRICE_SELECTION}
-        ></BasicSelect>
+        ></DropdownSelection>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <DropdownSelectionWithButton
+          filterMichelinPage={updateMichelinPage}
+          data={FILTER_BY_MICHELIN_RATING_SELECTION}
+        ></DropdownSelectionWithButton>
       </TabPanel>
     </Box>
   );
