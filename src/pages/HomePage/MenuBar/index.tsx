@@ -98,10 +98,6 @@ export const MenuBar: React.FC = (props: {
       <TabPanel value={value} index={0}>
         <DropdownSelection
           filterMichelinPage={updateMichelinPage}
-          data={FILTER_BY_MICHELIN_RATING_SELECTION}
-        ></DropdownSelection>
-        <DropdownSelection
-          filterMichelinPage={updateMichelinPage}
           data={FILTER_BY_PRICE_SELECTION}
         ></DropdownSelection>
       </TabPanel>

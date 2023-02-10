@@ -13,6 +13,12 @@ export const MICHELIN_AWARD_MAP: Record<MichelinStars, number> = {
   ONE_STAR: 1,
 };
 
+function getStaticGoogleMapsURL(name: string, postCode: string): string {
+  const location = `${name.replace(" ", "+")}Singapore+${postCode}`;
+
+  return `https://maps.googleapis.com/maps/api/staticmap?center=${location}&markers=color:red|${location}&zoom=16&size=400x200&key=AIzaSyD3T7DsPFN8kvf76NwvhSGTs7q5DNI5FTQ`;
+}
+
 function getMichelinRatingDisplay(michelinAward: MichelinAward) {
   switch (michelinAward) {
     case "THREE_STARS":
@@ -47,7 +53,7 @@ export const RestaurantCard = (props) => {
             <img src={data.image} alt="" />
           </div>
         </div>
-        <div className="michelin-card__detail flex flex-col col-span-5 m-4 justify-between">
+        <div className="michelin-card__detail flex flex-col col-span-3 m-4 justify-between">
           <div className="michelin-card__detail__non-cuisine-group">
             <div className="michelin-card__detail--stars">
               {getMichelinRatingDisplay(data.michelin_award)}
@@ -84,7 +90,12 @@ export const RestaurantCard = (props) => {
             );
           })}
         </div>
-        <p>HELLO WORLDD</p>
+        <div className="michelin-card__detail flex flex-col justify-center col-span-2">
+          <img
+            src={getStaticGoogleMapsURL(data.name, data.postcode)}
+            className="michelin-card__detail m-4"
+          ></img>
+        </div>
       </div>
     </Card>
   );
