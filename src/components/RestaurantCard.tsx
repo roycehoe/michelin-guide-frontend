@@ -94,6 +94,7 @@ export const RestaurantCard = (props) => {
           <img
             src={getStaticGoogleMapsURL(data.name, data.postcode)}
             className="michelin-card__detail m-4"
+            alt=""
           ></img>
         </div>
       </div>
